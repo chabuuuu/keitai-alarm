@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Keitai Alarm</string>
+    <string name="tab_alarms">[1] Báo thức</string>
+    <string name="tab_random">[2] Nhạc Random</string>
+    <string name="tab_settings">[3] Cài đặt</string>
+
+    <string name="max_alarms_format">Báo thức: %1$d/50</string>
+    <string name="alarm_limit_reached">Đã đạt tối đa 50 báo thức!</string>
+    <string name="next_alarm_none">Chưa bật báo thức nào</string>
+    <string name="next_alarm_format">Tiếp theo: %1$s (%2$s)</string>
+
+    <!-- Days -->
+    <string name="day_mon">T2</string>
+    <string name="day_tue">T3</string>
+    <string name="day_wed">T4</string>
+    <string name="day_thu">T5</string>
+    <string name="day_fri">T6</string>
+    <string name="day_sat">T7</string>
+    <string name="day_sun">CN</string>
+    <string name="repeat_once">Một lần</string>
+    <string name="repeat_daily">Hàng ngày</string>
+    <string name="repeat_weekdays">Thứ 2 - Thứ 6</string>
+    <string name="repeat_weekends">Cuối tuần</string>
+
+    <!-- Ringtone types -->
+    <string name="ringtone_default">Chuông mặc định máy</string>
+    <string name="ringtone_random">🎵 Chọn ngẫu nhiên từ Playlist</string>
+    <string name="ringtone_custom">Bài hát riêng</string>
+    <string name="full_song_enabled">Phát hết bài hát (Full track)</string>
+    <string name="full_song_desc">Không cắt ngang bài nhạc chuông khi reo</string>
+
+    <!-- Softkey guides -->
+    <string name="softkey_main_guide">[1] Thêm  |  [OK] Bật/Tắt  |  [2] Sửa  |  [*] Xóa</string>
+    <string name="softkey_edit_guide">[1] Lưu  |  [OK] Chọn  |  [CLR] Hủy</string>
+    <string name="softkey_playlist_guide">[1] Thêm  |  [2] Quét thư mục  |  [OK] Thử</string>
+    <string name="softkey_alert_guide">[OK / 5] TẮT BÁO THỨC  |  [0 / *] BÁO LẠI (10p)</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name">Chuông Báo Thức</string>
+    <string name="notification_channel_desc">Kênh phát âm thanh báo thức âm lượng cao</string>
+    <string name="action_dismiss">Tắt chuông</string>
+    <string name="action_snooze">Báo lại 10 phút</string>
+    <string name="alarm_ringing">Báo thức đang reo!</string>
+</resources>

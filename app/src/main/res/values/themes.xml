@@ -1,0 +1,48 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Sony Xperia / Walkman Theme -->
+    <style name="Theme.KeitaiAlarm" parent="Theme.MaterialComponents.NoActionBar">
+        <!-- Brand Colors -->
+        <item name="colorPrimary">@color/accent_primary</item>
+        <item name="colorPrimaryVariant">@color/accent_primary</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <item name="colorSecondary">@color/accent_gold</item>
+        <item name="colorSecondaryVariant">@color/accent_gold</item>
+        <item name="colorOnSecondary">#000000</item>
+
+        <!-- System Windows -->
+        <item name="android:statusBarColor">@color/bg_dark</item>
+        <item name="android:windowBackground">@color/bg_dark</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+
+        <!-- D-pad default focus highlight -->
+        <item name="android:colorControlHighlight">@color/focus_glow</item>
+
+        <!-- Fix White Dialog Issue: Enforce Sony Dark Dialog across entire app -->
+        <item name="android:alertDialogTheme">@style/SonyDarkDialog</item>
+        <item name="alertDialogTheme">@style/SonyDarkDialog</item>
+    </style>
+
+    <!-- Custom Dark Dialog for Sony Xperia Aesthetic -->
+    <style name="SonyDarkDialog" parent="Theme.MaterialComponents.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/bg_dialog_card</item>
+        <item name="android:background">@color/dialog_bg</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="colorAccent">@color/accent_primary</item>
+        <item name="colorPrimary">@color/accent_primary</item>
+        <item name="buttonBarPositiveButtonStyle">@style/SonyDialogButtonPositive</item>
+        <item name="buttonBarNegativeButtonStyle">@style/SonyDialogButtonNegative</item>
+    </style>
+
+    <style name="SonyDialogButtonPositive" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/accent_primary_light</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SonyDialogButtonNegative" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+</resources>

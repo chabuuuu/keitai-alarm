@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Sony Xperia / Walkman Inspired Palette -->
+    <!-- Deep Obsidian Blacks & Charcoals -->
+    <color name="bg_dark">#0E1015</color>
+    <color name="bg_surface">#161820</color>
+    <color name="bg_surface_card">#1D202B</color>
+    <color name="bg_surface_focused">#2A2742</color> <!-- Subtle Sony Purple glow on focus -->
+
+    <!-- Sony Signature Accents -->
+    <color name="accent_primary">#9D5CFF</color>     <!-- Sony Xperia Amethyst Purple -->
+    <color name="accent_primary_light">#B886FF</color>
+    <color name="accent_gold">#E5A93C</color>        <!-- Sony Walkman Gold -->
+    <color name="accent_secondary">#4EB7F5</color>   <!-- Sony Ice Blue / Clean Accent -->
+    <color name="accent_danger">#FF4D5E</color>      <!-- Alert Crimson Red -->
+    <color name="accent_success">#00E676</color>     <!-- Crisp Green -->
+
+    <!-- Crisp Typography Colors -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#A8B0C0</color>
+    <color name="text_muted">#687085</color>
+
+    <!-- Refined Borders -->
+    <color name="border_subtle">#282C3D</color>
+    <color name="border_focused">#9D5CFF</color>     <!-- High contrast Sony Purple ring -->
+    <color name="focus_glow">#409D5CFF</color>
+
+    <!-- Softkey Bar (Keitai classic bottom guide) -->
+    <color name="softkey_bar_bg">#090A0E</color>
+
+    <!-- Dialog Colors (Strictly Dark for Sony Theme) -->
+    <color name="dialog_bg">#181A23</color>
+    <color name="dialog_surface">#222533</color>
+</resources>

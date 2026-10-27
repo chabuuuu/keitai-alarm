@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!-- Top Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_surface"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="10dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="6dp">
+
+        <TextView
+            android:id="@+id/tvEditTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="CHỈNH SỬA BÁO THỨC"
+            android:textColor="@color/text_primary"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/btnSaveTop"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:background="@drawable/bg_button_save_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="[#] LƯU"
+            android:textColor="@color/text_save_selector"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="6dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- SECTION 1: Time Input Card -->
+            <LinearLayout
+                android:id="@+id/cardTimeInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_selector"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="0.04"
+                    android:text="GIỜ BÁO THỨC (BẤM SỐ ĐỂ ĐẶT NHANH)"
+                    android:textColor="@color/accent_primary_light"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <!-- Digital Time Box (Sony Style) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <!-- Hour Box -->
+                    <LinearLayout
+                        android:id="@+id/boxHour"
+                        android:layout_width="64dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_button_selector"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="4dp">
+
+                        <TextView
+                            android:id="@+id/tvHour"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="07"
+                            android:textColor="@color/text_primary"
+                            android:textSize="26sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="▲ Giờ ▼"
+                            android:textColor="@color/text_muted"
+                            android:textSize="9sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="6dp"
+                        android:text=":"
+                        android:textColor="@color/accent_primary_light"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <!-- Minute Box -->
+                    <LinearLayout
+                        android:id="@+id/boxMinute"
+                        android:layout_width="64dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_button_selector"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="4dp">
+
+                        <TextView
+                            android:id="@+id/tvMinute"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="00"
+                            android:textColor="@color/text_primary"
+                            android:textSize="26sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="▲ Phút ▼"
+                            android:textColor="@color/text_muted"
+                            android:textSize="9sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvT9InputHint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="Nhập 4 số bàn phím (VD: gõ 0 7 3 0 thành 07:30)"
+                    android:textColor="@color/accent_gold"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- SECTION 2: Label Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_card_selector"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TÊN BÁO THỨC"
+                    android:textColor="@color/accent_primary_light"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/bg_button_selector"
+                    android:focusable="true"
+                    android:hint="Nhập tên..."
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="6dp"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_muted"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- SECTION 3: Repeat Days Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_card_selector"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LẶP LẠI (BẤM SỐ 1-7 ĐỂ CHỌN THỨ)"
+                    android:textColor="@color/accent_primary_light"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <!-- Presets Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/btnRepeatOnce"
+                        android:layout_width="0dp"
+                        android:layout_height="28dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_selector"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="Một lần"
+                        android:textColor="@color/text_primary"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/btnRepeatDaily"
+                        android:layout_width="0dp"
+                        android:layout_height="28dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_selector"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="Hàng ngày"
+                        android:textColor="@color/text_primary"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/btnRepeatWeekdays"
+                        android:layout_width="0dp"
+                        android:layout_height="28dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_selector"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="Thứ 2-6"
+                        android:textColor="@color/text_primary"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <!-- Day Chips Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/chipMon"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_selector"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="T2"
+                        android:textColor="@color/text_primary"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/chipTue"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_selector"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="T3"
+                        android:textColor="@color/text_primary"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/chipWed"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_selector"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="T4"
+                        android:textColor="@color/text_primary"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/chipThu"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_selector"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="T5"
+                        android:textColor="@color/text_primary"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/chipFri"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_selector"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="T6"
+                        android:textColor="@color/text_primary"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/chipSat"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_selector"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="T7"
+                        android:textColor="@color/text_primary"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/chipSun"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_selector"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="CN"
+                        android:textColor="@color/text_primary"
+                        android:textSize="11sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- SECTION 4: Ringtone Selection Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_card_selector"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CHẾ ĐỘ NHẠC CHUÔNG"
+                    android:textColor="@color/accent_primary_light"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <!-- Option 1: Random from Playlist -->
+                <LinearLayout
+                    android:id="@+id/optRandomRingtone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_button_selector"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:id="@+id/tvOptRandomTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="● [A] Chọn ngẫu nhiên từ Playlist"
+                        android:textColor="@color/accent_primary_light"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvOptRandomDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Mỗi lần báo sẽ tự đổi bài ngẫu nhiên"
+                        android:textColor="@color/text_muted"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <!-- Option 2: Custom File -->
+                <LinearLayout
+                    android:id="@+id/optCustomFile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_button_selector"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:id="@+id/tvOptCustomTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="○ [B] Chọn bài hát riêng từ máy / thẻ nhớ"
+                        android:textColor="@color/text_primary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvSelectedSongName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="Chưa chọn file (Bấm để chọn)"
+                        android:textColor="@color/text_muted"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <!-- Option 3: System Default -->
+                <LinearLayout
+                    android:id="@+id/optDefaultRingtone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_button_selector"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:id="@+id/tvOptDefaultTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="○ [C] Chuông mặc định máy"
+                        android:textColor="@color/text_primary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Preview Button -->
+                <TextView
+                    android:id="@+id/btnPreviewRingtone"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_button_selector"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="▶ NGHE THỬ NHẠC CHUÔNG"
+                    android:textColor="@color/accent_gold"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- SECTION 5: Full Song Playback & Options -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_card_selector"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TÙY CHỌN PHÁT"
+                    android:textColor="@color/accent_primary_light"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <!-- Full song toggle card -->
+                <LinearLayout
+                    android:id="@+id/btnToggleFullSong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_button_selector"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:id="@+id/tvFullSongTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="✔ PHÁT FULL TRỌN BÀI HÁT (BẬT)"
+                        android:textColor="@color/accent_success"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Không ngắt bài chuông sau 30-60s"
+                        android:textColor="@color/text_muted"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <!-- Vibration toggle -->
+                <LinearLayout
+                    android:id="@+id/btnToggleVibrate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_button_selector"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:id="@+id/tvVibrateTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="✔ Rung khi reo (BẬT)"
+                        android:textColor="@color/text_primary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Bottom Save / Cancel Buttons: High-Contrast Focus Visual Effect -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btnSave"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button_save_selector"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="[#] LƯU BÁO THỨC"
+                    android:textColor="@color/text_save_selector"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnCancel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button_selector"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="[CLR] HỦY"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Softkey Bar: 36dp with top divider and padding to prevent cutoffs -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:background="@drawable/bg_softkey_guide"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="6dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[# / Trái] Lưu  |  [OK] Chọn  |  [CLR] Hủy"
+            android:textColor="@color/text_secondary"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,244 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.keitai.alarm"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="34" />
+10
+11    <!-- Permissions required for full-reliability alarms on Android 8.1+ Keitai -->
+12    <uses-permission android:name="android.permission.SET_ALARM" />
+12-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:6:5-68
+12-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:6:22-65
+13    <uses-permission android:name="android.permission.WAKE_LOCK" />
+13-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:7:5-68
+13-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:7:22-65
+14    <uses-permission android:name="android.permission.VIBRATE" />
+14-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:8:5-66
+14-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:8:22-63
+15    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+15-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:9:5-81
+15-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:9:22-78
+16    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+16-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:10:5-77
+16-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:10:22-74
+17    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+17-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:11:5-80
+17-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:11:22-77
+18    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+18-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:12:5-75
+18-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:12:22-72
+19    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+19-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:13:5-95
+19-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:13:22-92
+20    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+20-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:14:5-81
+20-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:14:22-78
+21
+22    <permission
+22-->[androidx.core:core:1.13.1] /home/haphuthinh/.gradle/caches/8.9/transforms/75ea9556da06a2ddba1460016a6e4412/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+23        android:name="com.keitai.alarm.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+23-->[androidx.core:core:1.13.1] /home/haphuthinh/.gradle/caches/8.9/transforms/75ea9556da06a2ddba1460016a6e4412/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+24        android:protectionLevel="signature" />
+24-->[androidx.core:core:1.13.1] /home/haphuthinh/.gradle/caches/8.9/transforms/75ea9556da06a2ddba1460016a6e4412/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+25
+26    <uses-permission android:name="com.keitai.alarm.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+26-->[androidx.core:core:1.13.1] /home/haphuthinh/.gradle/caches/8.9/transforms/75ea9556da06a2ddba1460016a6e4412/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+26-->[androidx.core:core:1.13.1] /home/haphuthinh/.gradle/caches/8.9/transforms/75ea9556da06a2ddba1460016a6e4412/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+27
+28    <application
+28-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:16:5-81:19
+29        android:name="com.keitai.alarm.KeitaiAlarmApp"
+29-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:17:9-39
+30        android:allowBackup="true"
+30-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:18:9-35
+31        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+31-->[androidx.core:core:1.13.1] /home/haphuthinh/.gradle/caches/8.9/transforms/75ea9556da06a2ddba1460016a6e4412/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
+32        android:debuggable="true"
+33        android:extractNativeLibs="false"
+34        android:icon="@drawable/ic_launcher"
+34-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:19:9-45
+35        android:label="@string/app_name"
+35-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:20:9-41
+36        android:roundIcon="@drawable/ic_launcher"
+36-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:21:9-50
+37        android:supportsRtl="true"
+37-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:22:9-35
+38        android:theme="@style/Theme.KeitaiAlarm" >
+38-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:23:9-49
+39        <activity
+39-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:25:9-34:20
+40            android:name="com.keitai.alarm.ui.MainActivity"
+40-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:26:13-44
+41            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+41-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:28:13-83
+42            android:exported="true"
+42-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:27:13-36
+43            android:windowSoftInputMode="adjustPan" >
+43-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:29:13-52
+44            <intent-filter>
+44-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:30:13-33:29
+45                <action android:name="android.intent.action.MAIN" />
+45-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:31:17-69
+45-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:31:25-66
+46
+47                <category android:name="android.intent.category.LAUNCHER" />
+47-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:32:17-77
+47-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:32:27-74
+48            </intent-filter>
+49        </activity>
+50        <activity
+50-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:36:9-40:70
+51            android:name="com.keitai.alarm.ui.AlarmEditActivity"
+51-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:37:13-49
+52            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+52-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:39:13-83
+53            android:exported="false"
+53-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:38:13-37
+54            android:windowSoftInputMode="stateHidden|adjustResize" />
+54-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:40:13-67
+55        <activity
+55-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:42:9-45:86
+56            android:name="com.keitai.alarm.ui.RandomPlaylistActivity"
+56-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:43:13-54
+57            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+57-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:45:13-83
+58            android:exported="false" />
+58-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:44:13-37
+59        <activity
+59-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:47:9-55:86
+60            android:name="com.keitai.alarm.ui.AlarmAlertActivity"
+60-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:48:13-50
+61            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+61-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:55:13-83
+62            android:excludeFromRecents="true"
+62-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:50:13-46
+63            android:exported="false"
+63-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:49:13-37
+64            android:launchMode="singleInstance"
+64-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:51:13-48
+65            android:showOnLockScreen="true"
+65-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:52:13-44
+66            android:showWhenLocked="true"
+66-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:53:13-42
+67            android:turnScreenOn="true" />
+67-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:54:13-40
+68
+69        <service
+69-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:57:9-60:40
+70            android:name="com.keitai.alarm.service.AlarmPlaybackService"
+70-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:58:13-57
+71            android:enabled="true"
+71-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:59:13-35
+72            android:exported="false" />
+72-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:60:13-37
+73
+74        <receiver
+74-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:62:9-65:40
+75            android:name="com.keitai.alarm.receiver.AlarmReceiver"
+75-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:63:13-51
+76            android:enabled="true"
+76-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:64:13-35
+77            android:exported="false" />
+77-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:65:13-37
+78        <receiver
+78-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:67:9-79:20
+79            android:name="com.keitai.alarm.receiver.BootReceiver"
+79-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:68:13-50
+80            android:enabled="true"
+80-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:69:13-35
+81            android:exported="true" >
+81-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:70:13-36
+82            <intent-filter>
+82-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:71:13-78:29
+83                <action android:name="android.intent.action.BOOT_COMPLETED" />
+83-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:72:17-79
+83-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:72:25-76
+84                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+84-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:73:17-86
+84-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:73:25-83
+85                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+85-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:74:17-82
+85-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:74:25-79
+86                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+86-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:75:17-82
+86-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:75:25-79
+87                <action android:name="android.intent.action.TIME_SET" />
+87-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:76:17-73
+87-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:76:25-70
+88                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+88-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:77:17-81
+88-->/home/haphuthinh/Workplace/Work_project/Side_project/keitai-alarm/app/src/main/AndroidManifest.xml:77:25-78
+89            </intent-filter>
+90        </receiver>
+91
+92        <provider
+92-->[androidx.emoji2:emoji2:1.3.0] /home/haphuthinh/.gradle/caches/8.9/transforms/139fef1c9d2776d43e782b25c607785b/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+93            android:name="androidx.startup.InitializationProvider"
+93-->[androidx.emoji2:emoji2:1.3.0] /home/haphuthinh/.gradle/caches/8.9/transforms/139fef1c9d2776d43e782b25c607785b/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+94            android:authorities="com.keitai.alarm.androidx-startup"
+94-->[androidx.emoji2:emoji2:1.3.0] /home/haphuthinh/.gradle/caches/8.9/transforms/139fef1c9d2776d43e782b25c607785b/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+95            android:exported="false" >
+95-->[androidx.emoji2:emoji2:1.3.0] /home/haphuthinh/.gradle/caches/8.9/transforms/139fef1c9d2776d43e782b25c607785b/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+96            <meta-data
+96-->[androidx.emoji2:emoji2:1.3.0] /home/haphuthinh/.gradle/caches/8.9/transforms/139fef1c9d2776d43e782b25c607785b/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+97                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+97-->[androidx.emoji2:emoji2:1.3.0] /home/haphuthinh/.gradle/caches/8.9/transforms/139fef1c9d2776d43e782b25c607785b/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+98                android:value="androidx.startup" />
+98-->[androidx.emoji2:emoji2:1.3.0] /home/haphuthinh/.gradle/caches/8.9/transforms/139fef1c9d2776d43e782b25c607785b/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+99            <meta-data
+99-->[androidx.lifecycle:lifecycle-process:2.8.2] /home/haphuthinh/.gradle/caches/8.9/transforms/28e12c98a82dd4f24dcecc9db16b6152/transformed/lifecycle-process-2.8.2/AndroidManifest.xml:29:13-31:52
+100                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+100-->[androidx.lifecycle:lifecycle-process:2.8.2] /home/haphuthinh/.gradle/caches/8.9/transforms/28e12c98a82dd4f24dcecc9db16b6152/transformed/lifecycle-process-2.8.2/AndroidManifest.xml:30:17-78
+101                android:value="androidx.startup" />
+101-->[androidx.lifecycle:lifecycle-process:2.8.2] /home/haphuthinh/.gradle/caches/8.9/transforms/28e12c98a82dd4f24dcecc9db16b6152/transformed/lifecycle-process-2.8.2/AndroidManifest.xml:31:17-49
+102            <meta-data
+102-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+103                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+103-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+104                android:value="androidx.startup" />
+104-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+105        </provider>
+106
+107        <receiver
+107-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+108            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+108-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+109            android:directBootAware="false"
+109-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+110            android:enabled="true"
+110-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+111            android:exported="true"
+111-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+112            android:permission="android.permission.DUMP" >
+112-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+113            <intent-filter>
+113-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+114                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+114-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+114-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+115            </intent-filter>
+116            <intent-filter>
+116-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+117                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+117-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+117-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+118            </intent-filter>
+119            <intent-filter>
+119-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+120                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+120-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+120-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+121            </intent-filter>
+122            <intent-filter>
+122-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+123                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+123-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+123-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/haphuthinh/.gradle/caches/8.9/transforms/a32939e4304f2e550433c222a70792ec/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+124            </intent-filter>
+125        </receiver>
+126    </application>
+127
+128</manifest>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Focused state: Super high-contrast Sony Gold with bright white border -->
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/accent_gold" />
+            <stroke android:width="2.5dp" android:color="#FFFFFF" />
+            <corners android:radius="6dp" />
+        </shape>
+    </item>
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/accent_primary_light" />
+            <stroke android:width="2dp" android:color="#FFFFFF" />
+            <corners android:radius="6dp" />
+        </shape>
+    </item>
+    <!-- Normal state: Elegant purple outline -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#232035" />
+            <stroke android:width="1.5dp" android:color="@color/accent_primary" />
+            <corners android:radius="6dp" />
+        </shape>
+    </item>
+</selector>

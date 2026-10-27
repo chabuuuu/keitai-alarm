@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="accent_danger">#FF4D5E</color>
+    <color name="accent_gold">#E5A93C</color>
+    <color name="accent_primary">#9D5CFF</color>
+    <color name="accent_primary_light">#B886FF</color>
+    <color name="accent_secondary">#4EB7F5</color>
+    <color name="accent_success">#00E676</color>
+    <color name="bg_dark">#0E1015</color>
+    <color name="bg_surface">#161820</color>
+    <color name="bg_surface_card">#1D202B</color>
+    <color name="bg_surface_focused">#2A2742</color>
+    <color name="border_focused">#9D5CFF</color>
+    <color name="border_subtle">#282C3D</color>
+    <color name="dialog_bg">#181A23</color>
+    <color name="dialog_surface">#222533</color>
+    <color name="focus_glow">#409D5CFF</color>
+    <color name="softkey_bar_bg">#090A0E</color>
+    <color name="text_muted">#687085</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#A8B0C0</color>
+    <string name="action_dismiss">Tắt chuông</string>
+    <string name="action_snooze">Báo lại 10 phút</string>
+    <string name="alarm_limit_reached">Đã đạt tối đa 50 báo thức!</string>
+    <string name="alarm_ringing">Báo thức đang reo!</string>
+    <string name="app_name">Keitai Alarm</string>
+    <string name="day_fri">T6</string>
+    <string name="day_mon">T2</string>
+    <string name="day_sat">T7</string>
+    <string name="day_sun">CN</string>
+    <string name="day_thu">T5</string>
+    <string name="day_tue">T3</string>
+    <string name="day_wed">T4</string>
+    <string name="full_song_desc">Không cắt ngang bài nhạc chuông khi reo</string>
+    <string name="full_song_enabled">Phát hết bài hát (Full track)</string>
+    <string name="max_alarms_format">Báo thức: %1$d/50</string>
+    <string name="next_alarm_format">Tiếp theo: %1$s (%2$s)</string>
+    <string name="next_alarm_none">Chưa bật báo thức nào</string>
+    <string name="notification_channel_desc">Kênh phát âm thanh báo thức âm lượng cao</string>
+    <string name="notification_channel_name">Chuông Báo Thức</string>
+    <string name="repeat_daily">Hàng ngày</string>
+    <string name="repeat_once">Một lần</string>
+    <string name="repeat_weekdays">Thứ 2 - Thứ 6</string>
+    <string name="repeat_weekends">Cuối tuần</string>
+    <string name="ringtone_custom">Bài hát riêng</string>
+    <string name="ringtone_default">Chuông mặc định máy</string>
+    <string name="ringtone_random">🎵 Chọn ngẫu nhiên từ Playlist</string>
+    <string name="softkey_alert_guide">[OK / 5] TẮT BÁO THỨC  |  [0 / *] BÁO LẠI (10p)</string>
+    <string name="softkey_edit_guide">[1] Lưu  |  [OK] Chọn  |  [CLR] Hủy</string>
+    <string name="softkey_main_guide">[1] Thêm  |  [OK] Bật/Tắt  |  [2] Sửa  |  [*] Xóa</string>
+    <string name="softkey_playlist_guide">[1] Thêm  |  [2] Quét thư mục  |  [OK] Thử</string>
+    <string name="tab_alarms">[1] Báo thức</string>
+    <string name="tab_random">[2] Nhạc Random</string>
+    <string name="tab_settings">[3] Cài đặt</string>
+    <style name="SonyDarkDialog" parent="Theme.MaterialComponents.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/bg_dialog_card</item>
+        <item name="android:background">@color/dialog_bg</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="colorAccent">@color/accent_primary</item>
+        <item name="colorPrimary">@color/accent_primary</item>
+        <item name="buttonBarPositiveButtonStyle">@style/SonyDialogButtonPositive</item>
+        <item name="buttonBarNegativeButtonStyle">@style/SonyDialogButtonNegative</item>
+    </style>
+    <style name="SonyDialogButtonNegative" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    <style name="SonyDialogButtonPositive" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/accent_primary_light</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Theme.KeitaiAlarm" parent="Theme.MaterialComponents.NoActionBar">
+        
+        <item name="colorPrimary">@color/accent_primary</item>
+        <item name="colorPrimaryVariant">@color/accent_primary</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <item name="colorSecondary">@color/accent_gold</item>
+        <item name="colorSecondaryVariant">@color/accent_gold</item>
+        <item name="colorOnSecondary">#000000</item>
+
+        
+        <item name="android:statusBarColor">@color/bg_dark</item>
+        <item name="android:windowBackground">@color/bg_dark</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+
+        
+        <item name="android:colorControlHighlight">@color/focus_glow</item>
+
+        
+        <item name="android:alertDialogTheme">@style/SonyDarkDialog</item>
+        <item name="alertDialogTheme">@style/SonyDarkDialog</item>
+    </style>
+</resources>
