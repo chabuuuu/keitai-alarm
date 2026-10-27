@@ -122,7 +122,10 @@ Every single interaction is 100% controllable through the physical keypad—no t
 
 ## 🛠️ Building & Installing
 
-### Prerequisites
+### 📥 Download Pre-built APK
+Pre-built, signed APKs are automatically generated for every release via GitHub Actions. You can download the latest `KeitaiAlarm-vX.Y.Z.apk` directly from the [Releases](https://github.com/chabuuuu/keitai-alarm/releases) tab.
+
+### Prerequisites (For Building from Source)
 * JDK 17 or JDK 21
 * Android SDK (API 34 compile, API 26+ min)
 * ADB (Android Debug Bridge)
