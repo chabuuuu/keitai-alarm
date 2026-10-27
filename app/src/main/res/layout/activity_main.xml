@@ -95,9 +95,11 @@
             android:layout_margin="1dp"
             android:layout_weight="1"
             android:background="@drawable/bg_button_selector"
+            android:ellipsize="end"
             android:focusable="true"
             android:gravity="center"
-            android:text="[2] Playlist Random"
+            android:singleLine="true"
+            android:text="[2] Playlists"
             android:textColor="@color/text_primary"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -181,9 +183,10 @@
             android:id="@+id/tvSoftkeyGuide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="[1] Thêm  |  [OK] Bật/Tắt  |  [2] Sửa  |  [*] Xóa"
+            android:singleLine="true"
+            android:text="[1] Thêm | [OK] Bật/Tắt | [2] Sửa | [*] Xóa"
             android:textColor="@color/text_secondary"
-            android:textSize="11sp"
+            android:textSize="10.5sp"
             android:textStyle="bold" />
     </LinearLayout>
 

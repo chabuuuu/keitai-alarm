@@ -17,6 +17,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.keitai.alarm.R
@@ -47,6 +48,7 @@ class AlarmEditActivity : AppCompatActivity() {
 
     private lateinit var optRandomRingtone: LinearLayout
     private lateinit var tvOptRandomTitle: TextView
+    private lateinit var tvSelectedPlaylistName: TextView
     private lateinit var optCustomFile: LinearLayout
     private lateinit var tvOptCustomTitle: TextView
     private lateinit var tvSelectedSongName: TextView
@@ -73,6 +75,8 @@ class AlarmEditActivity : AppCompatActivity() {
     private var currentMinute: Int = 0
     private var selectedDays = mutableSetOf<Int>()
     private var currentRingtoneType: RingtoneType = RingtoneType.RANDOM_PLAYLIST
+    private var selectedPlaylistId: String? = null
+    private var selectedPlaylistName: String = "Mặc định"
     private var customRingtoneUri: String? = null
     private var customRingtoneTitle: String = "Chưa chọn bài hát"
     private var playFullSong: Boolean = true
@@ -132,6 +136,7 @@ class AlarmEditActivity : AppCompatActivity() {
 
         optRandomRingtone = findViewById(R.id.optRandomRingtone)
         tvOptRandomTitle = findViewById(R.id.tvOptRandomTitle)
+        tvSelectedPlaylistName = findViewById(R.id.tvSelectedPlaylistName)
         optCustomFile = findViewById(R.id.optCustomFile)
         tvOptCustomTitle = findViewById(R.id.tvOptCustomTitle)
         tvSelectedSongName = findViewById(R.id.tvSelectedSongName)
@@ -194,6 +199,12 @@ class AlarmEditActivity : AppCompatActivity() {
         optRandomRingtone.setOnClickListener {
             currentRingtoneType = RingtoneType.RANDOM_PLAYLIST
             updateRingtoneUI()
+            showPlaylistPickerDialog()
+        }
+        tvSelectedPlaylistName.setOnClickListener {
+            currentRingtoneType = RingtoneType.RANDOM_PLAYLIST
+            updateRingtoneUI()
+            showPlaylistPickerDialog()
         }
         optCustomFile.setOnClickListener {
             currentRingtoneType = RingtoneType.CUSTOM_FILE
@@ -229,6 +240,8 @@ class AlarmEditActivity : AppCompatActivity() {
                 selectedDays.clear()
                 selectedDays.addAll(existing.repeatDays)
                 currentRingtoneType = existing.ringtoneType
+                selectedPlaylistId = existing.playlistId
+                selectedPlaylistName = existing.playlistName ?: "Mặc định"
                 customRingtoneUri = existing.ringtoneUri
                 customRingtoneTitle = existing.ringtoneTitle
                 playFullSong = existing.playFullSong
@@ -243,6 +256,9 @@ class AlarmEditActivity : AppCompatActivity() {
             etLabel.setText("Báo thức")
             selectedDays.clear()
             currentRingtoneType = RingtoneType.RANDOM_PLAYLIST
+            val allPl = PlaylistRepository.getInstance(this).getAllPlaylists()
+            selectedPlaylistId = allPl.firstOrNull()?.id ?: "default_playlist"
+            selectedPlaylistName = allPl.firstOrNull()?.name ?: "Mặc định"
             playFullSong = true
             vibrateEnabled = true
             tvEditTitle.text = "TẠO BÁO THỨC MỚI"
@@ -284,11 +300,13 @@ class AlarmEditActivity : AppCompatActivity() {
         when (currentRingtoneType) {
             RingtoneType.RANDOM_PLAYLIST -> {
                 tvOptRandomTitle.text = "● [A] Chọn ngẫu nhiên từ Playlist"
-                tvOptRandomTitle.setTextColor(ContextCompat.getColor(this, R.color.accent_secondary))
+                tvOptRandomTitle.setTextColor(ContextCompat.getColor(this, R.color.accent_primary_light))
                 tvOptCustomTitle.text = "○ [B] Chọn bài hát riêng từ máy / SD Card"
                 tvOptCustomTitle.setTextColor(ContextCompat.getColor(this, R.color.text_primary))
                 tvOptDefaultTitle.text = "○ [C] Chuông mặc định của máy"
                 tvOptDefaultTitle.setTextColor(ContextCompat.getColor(this, R.color.text_primary))
+                tvSelectedPlaylistName.text = "📁 List: $selectedPlaylistName (Bấm đổi list)"
+                tvSelectedPlaylistName.setTextColor(ContextCompat.getColor(this, R.color.accent_gold))
             }
             RingtoneType.CUSTOM_FILE -> {
                 tvOptRandomTitle.text = "○ [A] Chọn ngẫu nhiên từ Playlist"
@@ -297,6 +315,8 @@ class AlarmEditActivity : AppCompatActivity() {
                 tvOptCustomTitle.setTextColor(ContextCompat.getColor(this, R.color.accent_secondary))
                 tvOptDefaultTitle.text = "○ [C] Chuông mặc định của máy"
                 tvOptDefaultTitle.setTextColor(ContextCompat.getColor(this, R.color.text_primary))
+                tvSelectedPlaylistName.text = "📁 List: $selectedPlaylistName"
+                tvSelectedPlaylistName.setTextColor(ContextCompat.getColor(this, R.color.text_muted))
             }
             RingtoneType.DEFAULT -> {
                 tvOptRandomTitle.text = "○ [A] Chọn ngẫu nhiên từ Playlist"
@@ -305,9 +325,66 @@ class AlarmEditActivity : AppCompatActivity() {
                 tvOptCustomTitle.setTextColor(ContextCompat.getColor(this, R.color.text_primary))
                 tvOptDefaultTitle.text = "● [C] Chuông mặc định của máy"
                 tvOptDefaultTitle.setTextColor(ContextCompat.getColor(this, R.color.accent_secondary))
+                tvSelectedPlaylistName.text = "📁 List: $selectedPlaylistName"
+                tvSelectedPlaylistName.setTextColor(ContextCompat.getColor(this, R.color.text_muted))
             }
         }
         tvSelectedSongName.text = customRingtoneTitle
+    }
+
+    private fun showPlaylistPickerDialog() {
+        val repo = PlaylistRepository.getInstance(this)
+        val playlists = repo.getAllPlaylists()
+        val items = playlists.map { "📁 ${it.name} (${it.getTrackCount()} bài)" }.toMutableList()
+        items.add("[+ Tạo List Mới...]")
+
+        val currentIndex = playlists.indexOfFirst { it.id == selectedPlaylistId }
+
+        AlertDialog.Builder(this, R.style.SonyDarkDialog)
+            .setTitle("Chọn Danh Sách Nhạc")
+            .setSingleChoiceItems(items.toTypedArray(), if (currentIndex >= 0) currentIndex else 0) { dialog, which ->
+                if (which == playlists.size) {
+                    dialog.dismiss()
+                    promptCreateNewPlaylist()
+                } else {
+                    val chosen = playlists[which]
+                    selectedPlaylistId = chosen.id
+                    selectedPlaylistName = chosen.name
+                    currentRingtoneType = RingtoneType.RANDOM_PLAYLIST
+                    updateRingtoneUI()
+                    dialog.dismiss()
+                    Toast.makeText(this, "Đã chọn list: ${chosen.name}", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("Đóng", null)
+            .show()
+    }
+
+    private fun promptCreateNewPlaylist() {
+        val input = EditText(this).apply {
+            hint = "Tên Playlist (VD: Nhạc Anime, Nhạc Nhẹ...)"
+            setTextColor(ContextCompat.getColor(this@AlarmEditActivity, R.color.text_primary))
+            setHintTextColor(ContextCompat.getColor(this@AlarmEditActivity, R.color.text_muted))
+            setBackgroundResource(R.drawable.bg_button_selector)
+            setPadding(24, 24, 24, 24)
+        }
+
+        AlertDialog.Builder(this, R.style.SonyDarkDialog)
+            .setTitle("Tạo Playlist Mới")
+            .setView(input)
+            .setPositiveButton("Tạo") { _, _ ->
+                val name = input.text.toString().trim()
+                if (name.isNotEmpty()) {
+                    val created = PlaylistRepository.getInstance(this).createPlaylist(name)
+                    selectedPlaylistId = created.id
+                    selectedPlaylistName = created.name
+                    currentRingtoneType = RingtoneType.RANDOM_PLAYLIST
+                    updateRingtoneUI()
+                    Toast.makeText(this, "Đã tạo: ${created.name}", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("Hủy", null)
+            .show()
     }
 
     private fun updateFullSongUI() {
@@ -381,16 +458,16 @@ class AlarmEditActivity : AppCompatActivity() {
         when (currentRingtoneType) {
             RingtoneType.RANDOM_PLAYLIST -> {
                 val playlistRepo = PlaylistRepository.getInstance(this)
-                val track = playlistRepo.getRandomTrack()
+                val track = playlistRepo.getRandomTrack(selectedPlaylistId)
                 if (track != null) {
                     soundUri = if (track.pathOrUri.startsWith("content://")) {
                         Uri.parse(track.pathOrUri)
                     } else {
                         Uri.fromFile(File(track.pathOrUri))
                     }
-                    Toast.makeText(this, "Nghe thử: ${track.title}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Nghe thử [${selectedPlaylistName}]: ${track.title}", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this, "Playlist rỗng! Hãy quét nhạc trước.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "List '${selectedPlaylistName}' chưa có bài hát!", Toast.LENGTH_LONG).show()
                     soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
                 }
             }
@@ -466,6 +543,8 @@ class AlarmEditActivity : AppCompatActivity() {
             ringtoneType = currentRingtoneType,
             ringtoneUri = customRingtoneUri,
             ringtoneTitle = if (currentRingtoneType == RingtoneType.CUSTOM_FILE) customRingtoneTitle else "Ngẫu nhiên từ Playlist",
+            playlistId = selectedPlaylistId,
+            playlistName = selectedPlaylistName,
             vibrate = vibrateEnabled,
             volume = 100,
             playFullSong = playFullSong,

@@ -22,11 +22,13 @@ Modern smartphone alarm apps are designed for capacitive touchscreens and often 
 * Plays entire audio tracks (MP3, M4A, FLAC, WAV, AAC, OGG) from start to finish without arbitrary stock Android cutoffs.
 * Runs via a foreground audio service bound to `AudioAttributes.USAGE_ALARM` with a partial wake lock to guarantee loud, uninterrupted playback even with the flip closed.
 
-### 🎲 Random Ringtone from Playlist
-* Built-in **Random Playlist Manager**:
-  * **Auto Storage Scanner**: Scans internal storage (`/sdcard/Music`, `Download`) and external microSD cards (`/storage/xxxx-xxxx/`) for audio files.
-  * **Manual File Picker**: Add individual music files directly.
-* Alarms set to **"Random from Playlist"** will dynamically pick a new track each time the alarm fires.
+### 🎲 Multiple Named Playlists & Per-Alarm Random Shuffling
+* **Multiple Named Playlists**: Create, name, and manage separate playlists (e.g. *"Anime"*, *"Morning Energy"*, *"Gentle Acoustic"*).
+* **Track Management per Playlist**:
+  * **Auto Storage Scanner**: Scans internal storage (`/sdcard/Music`, `Download`) and external microSD cards (`/storage/xxxx-xxxx/`) for audio files directly into any playlist.
+  * **Manual File Picker**: Add individual music files directly into specific playlists.
+* **Per-Alarm Playlist Selection**: When setting an alarm, choose any specific playlist to randomly shuffle from when the alarm fires, or pick a single track, or system default ringtone.
+* Shows active playlist name directly on the alarm card (e.g., `🎵 [Random] Anime`).
 
 ### ⏰ Up to 50 Custom Alarms
 * Store and manage up to **50 alarms** with persistent storage.
@@ -76,16 +78,24 @@ Every single interaction is 100% controllable through the physical keypad—no t
 
 > **Note on Save Button Focus**: When navigating down to the Save button via D-pad, it transforms into high-contrast **Solid Walkman Gold with a 2.5dp pure white border and bold black text**, making current cursor focus unmistakable.
 
-### 3. Random Playlist Screen (`RandomPlaylistActivity`)
+### 3. Playlist List Screen (`RandomPlaylistActivity`)
 | Key | Action |
 | :--- | :--- |
-| `[1]` | Add audio file via system file picker |
-| `[2]` | **Auto-scan** internal storage & microSD card for music files |
-| `[3]` | **Test play** a random track from the playlist |
-| `D-Pad Center (OK)` | Preview / Stop playing selected track |
-| `[*]`, `Clear`, or `DEL` | Remove track from playlist |
+| `[1]` | **Create New Playlist** (custom name input dialog) |
+| `[2]` | **Auto-scan** storage audio into default playlist |
+| `D-Pad Center (OK)` | **Open selected playlist** to view & manage tracks |
+| `[*]`, `Clear`, or `DEL` | Delete selected playlist |
 
-### 4. Ringing Alert Screen (`AlarmAlertActivity`)
+### 4. Playlist Tracks Screen (`PlaylistTracksActivity`)
+| Key | Action |
+| :--- | :--- |
+| `[1]` | Add audio file via system file picker into this playlist |
+| `[2]` | **Auto-scan** device storage & microSD for music into this playlist |
+| `[3]` | **Test play** a random track from this playlist |
+| `D-Pad Center (OK)` | Preview / Stop playing selected track |
+| `[*]`, `Clear`, or `DEL` | Remove track from this playlist |
+
+### 5. Ringing Alert Screen (`AlarmAlertActivity`)
 | Key | Action |
 | :--- | :--- |
 | `D-Pad Center (OK)` or `[5]` | **DISMISS ALARM** |
@@ -165,6 +175,7 @@ keitai-alarm/
 │   │   │   │   └── PlaylistRepository.kt       # MediaStore & storage audio scanner
 │   │   │   ├── model/
 │   │   │   │   ├── Alarm.kt                    # Alarm data model & schedule helpers
+│   │   │   │   ├── Playlist.kt                 # Named playlist model
 │   │   │   │   └── PlaylistItem.kt             # Audio track model
 │   │   │   ├── receiver/
 │   │   │   │   ├── AlarmReceiver.kt            # Wakes phone & launches alert activity
@@ -176,10 +187,12 @@ keitai-alarm/
 │   │   │   └── ui/
 │   │   │       ├── MainActivity.kt             # Main alarm list & navigation
 │   │   │       ├── AlarmEditActivity.kt        # T9 numeric time entry & alarm editor
-│   │   │       ├── RandomPlaylistActivity.kt   # Music playlist manager & scanner
+│   │   │       ├── RandomPlaylistActivity.kt   # Playlist list manager & creator
+│   │   │       ├── PlaylistTracksActivity.kt   # Individual playlist track manager
 │   │   │       ├── AlarmAlertActivity.kt       # Fullscreen ringing screen
 │   │   │       └── adapter/
 │   │   │           ├── AlarmAdapter.kt         # Alarm list adapter with D-pad focus
+│   │   │           ├── PlaylistListAdapter.kt  # Playlist list adapter
 │   │   │           └── PlaylistAdapter.kt      # Audio track adapter
 │   │   └── res/
 │   │       ├── color/                          # Dynamic text state color selectors

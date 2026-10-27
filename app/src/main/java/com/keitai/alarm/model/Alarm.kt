@@ -18,6 +18,8 @@ data class Alarm(
     var ringtoneType: RingtoneType = RingtoneType.RANDOM_PLAYLIST,
     var ringtoneUri: String? = null,
     var ringtoneTitle: String = "Ngẫu nhiên từ Playlist",
+    var playlistId: String? = null,
+    var playlistName: String? = "Mặc định",
     var vibrate: Boolean = true,
     var volume: Int = 100,
     var playFullSong: Boolean = true, // Phát full bài không cắt

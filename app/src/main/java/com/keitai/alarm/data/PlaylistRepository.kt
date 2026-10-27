@@ -5,13 +5,13 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.database.Cursor
 import android.net.Uri
-import android.os.Build
 import android.provider.MediaStore
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.keitai.alarm.model.Playlist
 import com.keitai.alarm.model.PlaylistItem
 import java.io.File
-import kotlin.random.Random
+import java.util.UUID
 
 class PlaylistRepository private constructor(private val context: Context) {
 
@@ -20,7 +20,8 @@ class PlaylistRepository private constructor(private val context: Context) {
 
     companion object {
         private const val PREFS_NAME = "keitai_playlist_prefs"
-        private const val KEY_PLAYLIST_JSON = "random_playlist_json"
+        private const val KEY_PLAYLISTS_LIST_JSON = "named_playlists_json"
+        private const val KEY_LEGACY_PLAYLIST_JSON = "random_playlist_json"
 
         @Volatile
         private var instance: PlaylistRepository? = null
@@ -32,11 +33,46 @@ class PlaylistRepository private constructor(private val context: Context) {
         }
     }
 
+    init {
+        migrateLegacyPlaylistIfNeeded()
+    }
+
+    private fun migrateLegacyPlaylistIfNeeded() {
+        if (!prefs.contains(KEY_PLAYLISTS_LIST_JSON) && prefs.contains(KEY_LEGACY_PLAYLIST_JSON)) {
+            try {
+                val legacyJson = prefs.getString(KEY_LEGACY_PLAYLIST_JSON, null)
+                if (!legacyJson.isNullOrEmpty()) {
+                    val type = object : TypeToken<List<PlaylistItem>>() {}.type
+                    val legacyTracks: List<PlaylistItem> = gson.fromJson(legacyJson, type) ?: emptyList()
+                    val defaultPlaylist = Playlist(
+                        id = "default_playlist",
+                        name = "Mặc định",
+                        tracks = legacyTracks.toMutableList()
+                    )
+                    savePlaylists(listOf(defaultPlaylist))
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
     @Synchronized
-    fun getPlaylist(): List<PlaylistItem> {
-        val json = prefs.getString(KEY_PLAYLIST_JSON, null) ?: return emptyList()
+    fun getAllPlaylists(): List<Playlist> {
+        val json = prefs.getString(KEY_PLAYLISTS_LIST_JSON, null)
+        if (json.isNullOrEmpty()) {
+            val initial = listOf(
+                Playlist(
+                    id = "default_playlist",
+                    name = "Mặc định",
+                    tracks = mutableListOf()
+                )
+            )
+            savePlaylists(initial)
+            return initial
+        }
         return try {
-            val type = object : TypeToken<List<PlaylistItem>>() {}.type
+            val type = object : TypeToken<List<Playlist>>() {}.type
             gson.fromJson(json, type) ?: emptyList()
         } catch (e: Exception) {
             emptyList()
@@ -44,59 +80,125 @@ class PlaylistRepository private constructor(private val context: Context) {
     }
 
     @Synchronized
-    fun addTrack(item: PlaylistItem) {
-        val list = getPlaylist().toMutableList()
-        if (list.none { it.pathOrUri == item.pathOrUri }) {
-            list.add(item)
-            savePlaylist(list)
-        }
+    fun getPlaylistById(id: String): Playlist? {
+        return getAllPlaylists().firstOrNull { it.id == id }
     }
 
     @Synchronized
-    fun addTracks(items: List<PlaylistItem>): Int {
-        val list = getPlaylist().toMutableList()
-        var addedCount = 0
-        for (item in items) {
-            if (list.none { it.pathOrUri == item.pathOrUri }) {
-                list.add(item)
-                addedCount++
-            }
-        }
-        if (addedCount > 0) {
-            savePlaylist(list)
-        }
-        return addedCount
+    fun createPlaylist(name: String): Playlist {
+        val list = getAllPlaylists().toMutableList()
+        val newPlaylist = Playlist(
+            id = UUID.randomUUID().toString(),
+            name = name.trim().ifEmpty { "Playlist mới" },
+            tracks = mutableListOf()
+        )
+        list.add(newPlaylist)
+        savePlaylists(list)
+        return newPlaylist
     }
 
     @Synchronized
-    fun removeTrack(id: String) {
-        val list = getPlaylist().toMutableList()
-        val removed = list.removeAll { it.id == id }
-        if (removed) {
-            savePlaylist(list)
-        }
-    }
-
-    @Synchronized
-    fun toggleTrack(id: String): Boolean {
-        val list = getPlaylist().toMutableList()
+    fun renamePlaylist(id: String, newName: String): Boolean {
+        val list = getAllPlaylists().toMutableList()
         val index = list.indexOfFirst { it.id == id }
         if (index >= 0) {
-            val current = list[index]
-            val updated = current.copy(isEnabled = !current.isEnabled)
-            list[index] = updated
-            savePlaylist(list)
-            return updated.isEnabled
+            list[index].name = newName.trim().ifEmpty { "Playlist" }
+            savePlaylists(list)
+            return true
         }
         return false
     }
 
     @Synchronized
-    fun getRandomTrack(): PlaylistItem? {
-        val active = getPlaylist().filter { it.isEnabled }
-        if (active.isEmpty()) return null
-        val randomIndex = Random.nextInt(active.size)
-        return active[randomIndex]
+    fun deletePlaylist(id: String): Boolean {
+        val list = getAllPlaylists().toMutableList()
+        val removed = list.removeAll { it.id == id }
+        if (removed) {
+            // Keep at least one default playlist
+            if (list.isEmpty()) {
+                list.add(Playlist(id = "default_playlist", name = "Mặc định"))
+            }
+            savePlaylists(list)
+        }
+        return removed
+    }
+
+    @Synchronized
+    fun addTrackToPlaylist(playlistId: String, item: PlaylistItem) {
+        val list = getAllPlaylists().toMutableList()
+        val target = list.firstOrNull { it.id == playlistId } ?: list.firstOrNull() ?: return
+        if (target.tracks.none { it.pathOrUri == item.pathOrUri }) {
+            target.tracks.add(item)
+            savePlaylists(list)
+        }
+    }
+
+    @Synchronized
+    fun addTracksToPlaylist(playlistId: String, items: List<PlaylistItem>): Int {
+        val list = getAllPlaylists().toMutableList()
+        val target = list.firstOrNull { it.id == playlistId } ?: list.firstOrNull() ?: return 0
+        var addedCount = 0
+        for (item in items) {
+            if (target.tracks.none { it.pathOrUri == item.pathOrUri }) {
+                target.tracks.add(item)
+                addedCount++
+            }
+        }
+        if (addedCount > 0) {
+            savePlaylists(list)
+        }
+        return addedCount
+    }
+
+    @Synchronized
+    fun addTracks(items: List<PlaylistItem>): Int {
+        val targetId = getAllPlaylists().firstOrNull()?.id ?: "default_playlist"
+        return addTracksToPlaylist(targetId, items)
+    }
+
+    @Synchronized
+    fun removeTrackFromPlaylist(playlistId: String, trackId: String) {
+        val list = getAllPlaylists().toMutableList()
+        val target = list.firstOrNull { it.id == playlistId } ?: return
+        val removed = target.tracks.removeAll { it.id == trackId }
+        if (removed) {
+            savePlaylists(list)
+        }
+    }
+
+    @Synchronized
+    fun toggleTrackInPlaylist(playlistId: String, trackId: String): Boolean {
+        val list = getAllPlaylists().toMutableList()
+        val target = list.firstOrNull { it.id == playlistId } ?: return false
+        val track = target.tracks.firstOrNull { it.id == trackId } ?: return false
+        track.isEnabled = !track.isEnabled
+        savePlaylists(list)
+        return track.isEnabled
+    }
+
+    /**
+     * Pick a random track from the requested playlist.
+     * Falls back to any playlist with tracks if the requested playlist is empty or missing.
+     */
+    @Synchronized
+    fun getRandomTrack(playlistId: String?): PlaylistItem? {
+        val allPlaylists = getAllPlaylists()
+        if (allPlaylists.isEmpty()) return null
+
+        // 1. Try requested playlist
+        if (!playlistId.isNullOrEmpty()) {
+            val target = allPlaylists.firstOrNull { it.id == playlistId }
+            val track = target?.getRandomTrack()
+            if (track != null) return track
+        }
+
+        // 2. Fallback to default or any playlist with active tracks
+        for (playlist in allPlaylists) {
+            val track = playlist.getRandomTrack()
+            if (track != null) return track
+        }
+
+        return null
     }
 
     /**
@@ -159,7 +261,7 @@ class PlaylistRepository private constructor(private val context: Context) {
             e.printStackTrace()
         }
 
-        // 2. Scan standard directories directly (useful on F-03L SD cards and custom music folders)
+        // 2. Scan standard directories directly (F-03L storage and microSD)
         val candidateDirs = listOf(
             File("/sdcard/Music"),
             File("/sdcard/Download"),
@@ -176,7 +278,6 @@ class PlaylistRepository private constructor(private val context: Context) {
             }
         }
 
-        // Remove duplicates based on pathOrUri
         return foundTracks.distinctBy { it.pathOrUri }
     }
 
@@ -210,8 +311,8 @@ class PlaylistRepository private constructor(private val context: Context) {
         }
     }
 
-    private fun savePlaylist(list: List<PlaylistItem>) {
+    private fun savePlaylists(list: List<Playlist>) {
         val json = gson.toJson(list)
-        prefs.edit().putString(KEY_PLAYLIST_JSON, json).apply()
+        prefs.edit().putString(KEY_PLAYLISTS_LIST_JSON, json).apply()
     }
 }

@@ -110,9 +110,10 @@ class AlarmPlaybackService : Service() {
         when (alarm.ringtoneType) {
             RingtoneType.RANDOM_PLAYLIST -> {
                 val playlistRepo = PlaylistRepository.getInstance(this)
-                val randomTrack = playlistRepo.getRandomTrack()
+                val randomTrack = playlistRepo.getRandomTrack(alarm.playlistId)
                 if (randomTrack != null) {
-                    ringtoneTitle = randomTrack.title
+                    val pName = alarm.playlistName ?: "Playlist"
+                    ringtoneTitle = "${randomTrack.title} ($pName)"
                     soundUri = if (randomTrack.pathOrUri.startsWith("content://")) {
                         Uri.parse(randomTrack.pathOrUri)
                     } else {

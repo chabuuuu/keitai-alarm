@@ -72,7 +72,7 @@ class AlarmAdapter(
 
             // Ringtone title
             val ringtoneText = when (alarm.ringtoneType) {
-                RingtoneType.RANDOM_PLAYLIST -> "🎵 [Random] Playlist"
+                RingtoneType.RANDOM_PLAYLIST -> "🎵 [Random] ${alarm.playlistName ?: "Mặc định"}"
                 RingtoneType.CUSTOM_FILE -> "🎵 ${alarm.ringtoneTitle}"
                 RingtoneType.DEFAULT -> "🎵 Chuông mặc định máy"
             }
